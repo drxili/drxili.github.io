@@ -2,15 +2,44 @@
    Style modeled after the minimalist academic look of daojingzhai.github.io */
 
 :root {
-  --text:        #1a1a1a;
-  --muted:       #555;
-  --link:        #0b5fb0;
-  --link-hover:  #c0392b;
-  --rule:        #e3e3e3;
-  --bg:          #ffffff;
-  --max-width:   780px;
-  --serif:       "Georgia", "Times New Roman", Times, serif;
-  --sans:        -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --text:           #1a1a1a;
+  --muted:          #555;
+  --link:           #0b5fb0;
+  --link-hover:     #c0392b;
+  --rule:           #e3e3e3;
+  --bg:             #ffffff;
+  --abstract-bg:    #f7f7f5;
+  --avatar-border:  #e3e3e3;
+  --max-width:      780px;
+  --serif:          "Georgia", "Times New Roman", Times, serif;
+  --sans:           -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color-scheme:     light;
+}
+
+/* Dark mode — applied by [data-theme="dark"] (set by JS) or system pref when no override */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --text:          #e8e8e8;
+    --muted:         #9a9a9a;
+    --link:          #6fb3ff;
+    --link-hover:    #ff8a7a;
+    --rule:          #2a2a2a;
+    --bg:            #121212;
+    --abstract-bg:   #1c1c1c;
+    --avatar-border: #2a2a2a;
+    color-scheme:    dark;
+  }
+}
+:root[data-theme="dark"] {
+  --text:          #e8e8e8;
+  --muted:         #9a9a9a;
+  --link:          #6fb3ff;
+  --link-hover:    #ff8a7a;
+  --rule:          #2a2a2a;
+  --bg:            #121212;
+  --abstract-bg:   #1c1c1c;
+  --avatar-border: #2a2a2a;
+  color-scheme:    dark;
 }
 
 * { box-sizing: border-box; }
@@ -24,6 +53,7 @@ html, body {
   font-size: 17px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.18s ease, color 0.18s ease;
 }
 
 a {
@@ -41,12 +71,41 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
   font-family: var(--sans);
   font-size: 14px;
   letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
 }
 .topnav a {
   margin-right: 22px;
   color: var(--muted);
 }
 .topnav a:hover { color: var(--link-hover); }
+.theme-toggle {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  line-height: 1.2;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+.theme-toggle .icon-light { display: inline; }
+.theme-toggle .icon-dark  { display: none; }
+/* explicit dark override */
+:root[data-theme="dark"] .theme-toggle .icon-light { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-dark  { display: inline; }
+/* system dark with no explicit override */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-light { display: none; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-dark  { display: inline; }
+}
 
 /* ---------- Main column ---------- */
 main {
@@ -67,7 +126,7 @@ main {
   height: 130px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--avatar-border);
   flex-shrink: 0;
 }
 .intro-text h1 {
@@ -176,7 +235,7 @@ details.abstract > summary:hover { color: var(--link-hover); }
 details.abstract > p {
   margin: 8px 0 0;
   padding: 10px 14px;
-  background: #f7f7f5;
+  background: var(--abstract-bg);
   border-left: 3px solid var(--rule);
   color: var(--text);
   line-height: 1.55;
