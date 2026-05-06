@@ -1,0 +1,198 @@
+/* Xi Li — personal homepage
+   Style modeled after the minimalist academic look of daojingzhai.github.io */
+
+:root {
+  --text:        #1a1a1a;
+  --muted:       #555;
+  --link:        #0b5fb0;
+  --link-hover:  #c0392b;
+  --rule:        #e3e3e3;
+  --bg:          #ffffff;
+  --max-width:   780px;
+  --serif:       "Georgia", "Times New Roman", Times, serif;
+  --sans:        -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover { color: var(--link-hover); text-decoration: underline; }
+
+/* ---------- Top navigation ---------- */
+.topnav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 22px 24px 10px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+.topnav a {
+  margin-right: 22px;
+  color: var(--muted);
+}
+.topnav a:hover { color: var(--link-hover); }
+
+/* ---------- Main column ---------- */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+
+/* ---------- Intro ---------- */
+.intro {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.intro-text h1 {
+  margin: 0 0 4px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.intro-text .title {
+  margin: 0 0 2px;
+  font-size: 16px;
+  color: var(--text);
+}
+.intro-text .affiliation {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--muted);
+}
+.intro-text .contact {
+  margin: 0;
+  font-size: 14px;
+  font-family: var(--sans);
+  color: var(--muted);
+}
+
+/* ---------- Bio ---------- */
+.bio {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 22px 0;
+  margin-bottom: 32px;
+}
+.bio p { margin: 0; }
+
+/* ---------- Publications ---------- */
+.publications h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  letter-spacing: 0.01em;
+}
+.pub-note {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+.pub-list {
+  list-style: decimal;
+  padding-left: 22px;
+  margin: 0;
+}
+.pub-list > li {
+  margin-bottom: 22px;
+  padding-left: 4px;
+}
+.pub-list > li::marker {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 14px;
+}
+.pub-title {
+  margin: 0 0 4px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.pub-title a { color: var(--link); }
+.pub-authors {
+  margin: 0 0 2px;
+  font-size: 15px;
+  color: var(--text);
+}
+.pub-authors strong { color: var(--text); }
+.pub-venue {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Abstract toggle, mimicking [Abstract +] inline link */
+details.abstract {
+  margin-top: 4px;
+  font-size: 14.5px;
+}
+details.abstract > summary {
+  cursor: pointer;
+  display: inline;
+  list-style: none;
+  color: var(--link);
+  font-family: var(--sans);
+  font-size: 13px;
+}
+details.abstract > summary::-webkit-details-marker { display: none; }
+details.abstract > summary::before { content: "[ "; color: var(--muted); }
+details.abstract > summary::after  { content: " ]"; color: var(--muted); }
+details.abstract[open] > summary::before { content: "[ "; }
+details.abstract[open] > summary::after  { content: " \2212 ]"; }
+details.abstract[open] > summary { }
+details.abstract > summary:hover { color: var(--link-hover); }
+details.abstract > p {
+  margin: 8px 0 0;
+  padding: 10px 14px;
+  background: #f7f7f5;
+  border-left: 3px solid var(--rule);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 18px 24px 28px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .intro { flex-direction: column; text-align: center; gap: 16px; }
+  .intro-text { display: contents; }
+  .intro-text h1 { font-size: 24px; }
+  .pub-list { padding-left: 18px; }
+}
