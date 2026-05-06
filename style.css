@@ -100,7 +100,12 @@ main {
   padding: 22px 0;
   margin-bottom: 32px;
 }
-.bio p { margin: 0; }
+.bio p {
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
 
 /* ---------- Publications ---------- */
 .publications h2 {
@@ -175,6 +180,9 @@ details.abstract > p {
   border-left: 3px solid var(--rule);
   color: var(--text);
   line-height: 1.55;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 /* ---------- Footer ---------- */
